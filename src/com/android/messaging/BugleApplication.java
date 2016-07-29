@@ -21,6 +21,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
 import android.os.Handler;
 import android.os.Looper;
@@ -29,6 +30,9 @@ import android.support.v7.mms.MmsManager;
 import android.telephony.CarrierConfigManager;
 
 import com.android.messaging.datamodel.DataModel;
+import com.android.messaging.datamodel.media.BugleMediaCacheManager;
+import com.android.messaging.datamodel.media.MediaCache;
+import com.android.messaging.datamodel.media.MediaCacheManager;
 import com.android.messaging.receiver.SmsReceiver;
 import com.android.messaging.sms.ApnDatabase;
 import com.android.messaging.sms.BugleApnSettingsLoader;
@@ -58,6 +62,8 @@ public class BugleApplication extends Application implements UncaughtExceptionHa
     private UncaughtExceptionHandler sSystemUncaughtExceptionHandler;
     private static boolean sRunningTests = false;
 
+    private Configuration mCurrentConfig;
+
     @VisibleForTesting
     protected static void setTestsRunning() {
         sRunningTests = true;
@@ -83,6 +89,8 @@ public class BugleApplication extends Application implements UncaughtExceptionHa
             LogUtil.e(TAG, "BugleApplication.onCreate: FactoryImpl.register skipped for test run");
         }
 
+        mCurrentConfig = new Configuration(getResources().getConfiguration());
+
         sSystemUncaughtExceptionHandler = Thread.getDefaultUncaughtExceptionHandler();
         Thread.setDefaultUncaughtExceptionHandler(this);
         Trace.endSection();
@@ -95,6 +103,14 @@ public class BugleApplication extends Application implements UncaughtExceptionHa
         // Update conversation drawables when changing writing systems
         // (Right-To-Left / Left-To-Right)
         ConversationDrawables.get().updateDrawables();
+
+        // Clear avatar image cache on theme change
+        int changed = mCurrentConfig.updateFrom(newConfig);
+        if ((changed & ActivityInfo.CONFIG_UI_MODE) != 0) {
+            MediaCache<?> avatarCache = MediaCacheManager.get()
+                    .getOrCreateMediaCacheById(BugleMediaCacheManager.AVATAR_IMAGE_CACHE);
+            avatarCache.destroy();
+        }
     }
 
     // Called by the "real" factory from FactoryImpl.register() (i.e. not run in tests)
