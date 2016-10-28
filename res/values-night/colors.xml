@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (C) 2016 DarkKat
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+
+<resources>
+
+    <!-- DarkKat theme -->
+    <color name="darkkat_blue_grey">#ff1b1f23</color>
+    <color name="darkkat_blue_blue_grey">#ff1f2429</color>
+
+    <color name="contextual_action_bar_background_color">#8BC34A</color>
+    <color name="archived_conversation_action_bar_background_color">#626262</color>
+    <color name="archived_conversation_action_bar_background_color_dark">#424242</color>
+
+    <color name="conversation_list_name">#ffffffff</color>
+    <color name="conversation_list_details">#b3ffffff</color>
+    <color name="conversation_list_item_read">#b3ffffff</color>
+    <color name="conversation_list_item_unread">#ffffffff</color> 
+    <color name="conversation_compose_divider_start">#44ffffff</color>
+
+    <color name="message_text">#ffffffff</color>
+    <color name="timestamp_text_outgoing">#b3ffffff</color>
+    <color name="compose_send_text_color">#ffffffff</color>
+
+    <color name="message_title_text">#ffffffff</color>
+    <color name="message_download_failed_status_text">#ffffffff</color>
+    <color name="message_info_text_incoming_download_failed">#6affffff</color>
+
+    <color name="subject_editor_bubble">@color/darkkat_blue_grey</color>
+    <color name="message_text_color_incoming_download_failed">#6affffff</color>
+    <color name="message_text_color_outgoing">#b3ffffff</color>
+    <color name="conversation_background">@color/darkkat_blue_grey</color>
+    <color name="conversation_edge_effect">#626262</color>
+    <color name="compose_message_send_color_pressed">#cccccc</color>
+    <color name="message_bubble_color_outgoing">@color/darkkat_blue_blue_grey</color>
+    <color name="message_error_bubble_color_incoming">#1d1d1d</color>
+    <color name="message_audio_button_color_incoming">@color/darkkat_blue_blue_grey</color>
+    <color name="generic_video_icon">#ffffffff</color>
+
+    <color name="color_filter_base_color">#ffffffff</color>
+
+    <color name="contact_avatar_default_background">#1d1d1d</color>
+    <color name="contact_avatar_pressed_color">#40ffffff</color>
+    <color name="contact_list_text_primary">#ffffffff</color>
+    <color name="contact_list_text_secondary">#b3ffffff</color>
+
+    <color name="compose_contact_divider">#44ffffff</color>
+    <color name="contact_picker_background">@color/darkkat_blue_grey</color>
+    <color name="chips_dropdown_background_pressed">#cccccc</color>
+
+    <color name="gallery_image_default_background">@color/darkkat_blue_blue_grey</color>
+    <color name="gallery_image_pressed">#ccffffff</color>
+
+    <color name="audio_picker_level_primary_color">#29ffffff</color>
+    <color name="audio_record_control_button_stroke">#30ffffff</color>
+    <color name="audio_picker_hint_text_color">#40ffffff</color>
+    <color name="audio_picker_timer_text_color">#b3ffffff</color>
+    <color name="audio_attachment_timer_text_color">#b3ffffff</color>
+
+    <color name="notification_sender_text">#ffffffff</color>
+    <color name="notification_subject_color">#b3ffffff</color>
+
+    <color name="participant_list_text_primary">#ffffffff</color>
+    <color name="participant_list_text_secondary">#b3ffffff</color>
+    <color name="people_and_options_header_text">#b3ffffff</color>
+    <color name="people_and_options_list_divider">#1fffffff</color>
+
+    <color name="message_text_counter_color">#b3ffffff</color>
+    <color name="list_empty_text">#80ffffff</color>
+    <color name="low_storage_action_item_color">#ffffffff</color>
+
+    <color name="sim_selector_text_primary">#ffffff</color>
+    <color name="sim_selector_text_secondary">#b3ffffff</color>
+    <color name="sim_selector_background_end">#cc1f2429</color>
+    <color name="sim_selector_background_start">@color/darkkat_blue_blue_grey</color>
+    <color name="sim_indicator_color_light">#ffffff</color>
+    <color name="sim_indicator_color_dark">#323232</color>
+
+    <color name="search_view_text_cursor">#ffffffff</color>
+
+    <color name="button_bar_cancel_button_text_color">#ffffffff</color>
+
+    <color name="settings_list_text_primary">#ffffffff</color>
+    <color name="settings_list_text_secondary">#b3ffffff</color>
+    <color name="group_mms_setting_text_color">#b3ffffff</color>
+    <color name="settings_item_title_text_primary">#ffffffff</color>
+
+    <color name="widget_text_color">#ffffffff</color>
+    <color name="widget_outgoing_text_color">#ffffffff</color>
+    <color name="widget_background_color">@color/darkkat_blue_blue_grey</color>
+
+    <color name="ripple_material_light">#33ffffff</color>
+
+    <color name="attachment_chooser_audio_background">@color/darkkat_blue_blue_grey</color>
+    <color name="attachment_chooser_vcard_background">@color/darkkat_blue_blue_grey</color>
+
+    <color name="fastscroll_track_color">#1effffff</color>
+    <color name="fastscroll_thumb_color">#42ffffff</color>
+</resources>
