@@ -20,7 +20,7 @@
     <color name="darkkat_blue_grey">#ff1b1f23</color>
     <color name="darkkat_blue_blue_grey">#ff1f2429</color>
 
-    <color name="contextual_action_bar_background_color">#8BC34A</color>
+    <color name="contextual_action_bar_background_color">@color/message_bubble_color_selected</color>
     <color name="archived_conversation_action_bar_background_color">#626262</color>
     <color name="archived_conversation_action_bar_background_color_dark">#424242</color>
 

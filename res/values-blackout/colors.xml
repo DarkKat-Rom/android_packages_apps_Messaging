@@ -19,7 +19,7 @@
     <!-- Blackout theme -->
     <color name="blackout_bg">#ff000000</color>
 
-    <color name="contextual_action_bar_background_color">#8BC34A</color>
+    <color name="contextual_action_bar_background_color">@color/message_bubble_color_selected</color>
     <color name="archived_conversation_action_bar_background_color">@color/blackout_bg</color>
     <color name="archived_conversation_action_bar_background_color_dark">@color/blackout_bg</color>
 
