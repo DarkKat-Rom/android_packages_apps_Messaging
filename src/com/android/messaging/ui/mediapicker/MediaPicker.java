@@ -153,8 +153,11 @@ public class MediaPicker extends Fragment implements DraftMessageSubscriptionDat
     /** True if the media picker is visible */
     private boolean mOpen;
 
-    /** The theme color to use to make the media picker match the rest of the UI */
-    private int mThemeColor;
+    /** The accent color to use to make the media picker match the rest of the UI */
+    private int mAccentColor;
+
+    /** The primary color to use to make the media picker match the rest of the UI */
+    private int mPrimaryColor;
 
     @VisibleForTesting
     final Binding<MediaPickerData> mBinding = BindingBase.createBinding(this);
@@ -225,7 +228,7 @@ public class MediaPicker extends Fragment implements DraftMessageSubscriptionDat
                 false);
         mMediaPickerPanel.setMediaPicker(this);
         mTabStrip = (LinearLayout) mMediaPickerPanel.findViewById(R.id.mediapicker_tabstrip);
-        mTabStrip.setBackgroundColor(mThemeColor);
+        mTabStrip.setBackgroundColor(mPrimaryColor);
         for (final MediaChooser chooser : mChoosers) {
             chooser.onCreateTabButton(inflater, mTabStrip);
             final boolean enabled = (chooser.getSupportedMediaTypes() & mSupportedMediaTypes) !=
@@ -305,25 +308,27 @@ public class MediaPicker extends Fragment implements DraftMessageSubscriptionDat
     }
 
     /**
-     * Sets the theme color to make the media picker match the surrounding UI
-     * @param themeColor The new theme color
+     * Sets the accent and primary color to make the media picker match the surrounding UI
+     * @param accentColor The new accent color
+     * @param primaryColor The new primary color
      */
-    public void setConversationThemeColor(final int themeColor) {
-        mThemeColor = themeColor;
+    public void setConversationColors(final int accentColor, final int primaryColor) {
+        mAccentColor = accentColor;
+        mPrimaryColor = primaryColor;
         if (mTabStrip != null) {
-            mTabStrip.setBackgroundColor(mThemeColor);
+            mTabStrip.setBackgroundColor(mPrimaryColor);
         }
 
         for (final MediaChooser chooser : mEnabledChoosers) {
-            chooser.setThemeColor(mThemeColor);
+            chooser.setAccentColor(mAccentColor);
         }
     }
 
     /**
-     * Gets the current conversation theme color.
+     * Gets the current conversation accent color.
      */
-    public int getConversationThemeColor() {
-        return mThemeColor;
+    public int getConversationAccentColor() {
+        return mAccentColor;
     }
 
     public void setDraftMessageDataModel(final BindingBase<DraftMessageData> draftBinding) {

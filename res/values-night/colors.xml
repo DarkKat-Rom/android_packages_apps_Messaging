@@ -17,17 +17,15 @@
 <resources>
 
     <!-- DarkKat theme -->
-    <color name="darkkat_blue_grey">#ff1b1f23</color>
-    <color name="darkkat_blue_blue_grey">#ff1f2429</color>
-
     <color name="contextual_action_bar_background_color">@color/message_bubble_color_selected</color>
     <color name="archived_conversation_action_bar_background_color">#626262</color>
-    <color name="archived_conversation_action_bar_background_color_dark">#424242</color>
+    <color name="archived_conversation_status_bar_background_color">#424242</color>
 
-    <color name="conversation_list_name">#ffffffff</color>
-    <color name="conversation_list_details">#b3ffffff</color>
     <color name="conversation_list_item_read">#b3ffffff</color>
     <color name="conversation_list_item_unread">#ffffffff</color> 
+    <color name="conversation_list_name">#ffffffff</color>
+    <color name="conversation_list_details">#b3ffffff</color>
+
     <color name="conversation_compose_divider_start">#44ffffff</color>
 
     <color name="message_text">#ffffffff</color>
@@ -36,20 +34,18 @@
 
     <color name="message_title_text">#ffffffff</color>
     <color name="message_download_failed_status_text">#ffffffff</color>
-    <color name="message_info_text_incoming_download_failed">#6affffff</color>
+    <color name="message_info_text_incoming_download_failed">#b3ffffff</color>
 
-    <color name="subject_editor_bubble">@color/darkkat_blue_grey</color>
-    <color name="message_text_color_incoming_download_failed">#6affffff</color>
-    <color name="message_text_color_outgoing">#b3ffffff</color>
+    <color name="subject_editor_bubble">@color/darkkat_blue_blue_grey</color>
+    <color name="message_text_color_incoming_download_failed">#b3ffffff</color>
+    <color name="message_text_color_outgoing">#ffffffff</color>
     <color name="conversation_background">@color/darkkat_blue_grey</color>
-    <color name="conversation_edge_effect">#626262</color>
+    <color name="conversation_edge_effect">#31ffffff</color>
     <color name="compose_message_send_color_pressed">#cccccc</color>
     <color name="message_bubble_color_outgoing">@color/darkkat_blue_blue_grey</color>
     <color name="message_error_bubble_color_incoming">#1d1d1d</color>
     <color name="message_audio_button_color_incoming">@color/darkkat_blue_blue_grey</color>
     <color name="generic_video_icon">#ffffffff</color>
-
-    <color name="color_filter_base_color">#ffffffff</color>
 
     <color name="contact_avatar_default_background">#1d1d1d</color>
     <color name="contact_avatar_pressed_color">#40ffffff</color>
@@ -85,8 +81,6 @@
     <color name="sim_selector_text_secondary">#b3ffffff</color>
     <color name="sim_selector_background_end">#cc1f2429</color>
     <color name="sim_selector_background_start">@color/darkkat_blue_blue_grey</color>
-    <color name="sim_indicator_color_light">#ffffff</color>
-    <color name="sim_indicator_color_dark">#323232</color>
 
     <color name="search_view_text_cursor">#ffffffff</color>
 

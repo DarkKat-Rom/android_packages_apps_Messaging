@@ -189,7 +189,7 @@ abstract class MediaChooser extends BasePagerViewHolder
         return false;
     }
 
-    public void setThemeColor(final int color) {
+    public void setAccentColor(final int color) {
     }
 
     /**

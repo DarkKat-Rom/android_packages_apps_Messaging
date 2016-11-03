@@ -109,7 +109,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
-                        android:src="@drawable/ic_attachment_dark"
+                        android:src="@drawable/ic_attachment"
                         android:paddingTop="@dimen/compose_message_attachment_padding_topBottom"
                         android:paddingBottom="@dimen/compose_message_attachment_padding_topBottom"
                         android:contentDescription="@string/attachMediaButtonContentDescription" />

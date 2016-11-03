@@ -19,7 +19,7 @@
     android:orientation="horizontal"
     android:layout_width="match_parent"
     android:layout_height="56dp"
-    android:background="@android:color/background_light"
+    android:background="@color/debug_and_dialog_background"
     android:gravity="center_vertical"
     android:clickable="true"
     style="@style/DebugMmsConfigItemStyle" >

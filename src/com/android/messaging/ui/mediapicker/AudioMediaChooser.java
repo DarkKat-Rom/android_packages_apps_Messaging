@@ -59,9 +59,9 @@ class AudioMediaChooser extends MediaChooser implements
     }
 
     @Override
-    public void setThemeColor(final int color) {
+    public void setAccentColor(final int color) {
         if (mView != null) {
-            ((AudioRecordView) mView).setThemeColor(color);
+            ((AudioRecordView) mView).setAccentColor(color);
         }
     }
 
@@ -73,7 +73,7 @@ class AudioMediaChooser extends MediaChooser implements
                 container /* root */,
                 false /* attachToRoot */);
         view.setHostInterface(this);
-        view.setThemeColor(mMediaPicker.getConversationThemeColor());
+        view.setAccentColor(mMediaPicker.getConversationAccentColor());
         mEnabledView = view.findViewById(R.id.mediapicker_enabled);
         mMissingPermissionView = view.findViewById(R.id.missing_permission_view);
         return view;

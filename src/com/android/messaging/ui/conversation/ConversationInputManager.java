@@ -350,7 +350,8 @@ public class ConversationInputManager implements ConversationInput.ConversationI
         public boolean show(boolean animate) {
             if (mMediaPicker == null) {
                 mMediaPicker = getExistingOrCreateMediaPicker();
-                setConversationThemeColor(ConversationDrawables.get().getConversationThemeColor());
+                setConversationColors(ConversationDrawables.get().getConversationAccentColor(),
+                        ConversationDrawables.get().getConversationPrimaryColor());
                 mMediaPicker.setSubscriptionDataProvider(mHost);
                 mMediaPicker.setDraftMessageDataModel(mDraftDataModel);
                 mMediaPicker.setListener(new MediaPickerListener() {
@@ -435,9 +436,9 @@ public class ConversationInputManager implements ConversationInput.ConversationI
             }
         }
 
-        public void setConversationThemeColor(final int themeColor) {
+        public void setConversationColors(final int accentColor, final int primaryColor) {
             if (mMediaPicker != null) {
-                mMediaPicker.setConversationThemeColor(themeColor);
+                mMediaPicker.setConversationColors(accentColor, primaryColor);
             }
         }
 

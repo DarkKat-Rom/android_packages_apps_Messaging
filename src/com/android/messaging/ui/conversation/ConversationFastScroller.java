@@ -149,7 +149,7 @@ public class ConversationFastScroller extends RecyclerView.OnScrollListener impl
         mThumbImageView = (ImageView) inflator.inflate(R.layout.fastscroll_thumb, null);
         mPreviewTextView = (TextView) inflator.inflate(R.layout.fastscroll_preview, null);
 
-        refreshConversationThemeColor();
+        refreshConversationAccentColor();
 
         // Add the fast scroll views to the overlay, so they are rendered above the list
         mOverlay = rv.getOverlay();
@@ -161,7 +161,7 @@ public class ConversationFastScroller extends RecyclerView.OnScrollListener impl
         mPreviewTextView.setAlpha(0f);
     }
 
-    public void refreshConversationThemeColor() {
+    public void refreshConversationAccentColor() {
         mPreviewTextView.setBackground(
                 ConversationDrawables.get().getFastScrollPreviewDrawable(mPosRight));
         if (OsUtil.isAtLeastL()) {

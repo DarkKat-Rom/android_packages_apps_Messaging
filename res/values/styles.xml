@@ -33,8 +33,8 @@
         <!-- All customizations that are NOT specific to a particular API-level can go here. -->
          <item name="android:dropDownListViewStyle">@style/DropDownListViewStyle</item>
          <item name="colorPrimary">@color/action_bar_background_color</item>
-         <item name="colorPrimaryDark">@color/action_bar_background_color_dark</item>
-         <item name="colorAccent">@color/action_bar_background_color</item>
+         <item name="colorPrimaryDark">@color/status_bar_background_color</item>
+         <item name="colorAccent">@color/accent_color</item>
          <item name="android:textColorHighlight">@color/text_highlight_color</item>
          <item name="actionBarStyle">@style/BugleActionBar</item>
          <item name="apnPreferenceStyle">@style/ApnPreference</item>
@@ -60,7 +60,7 @@
 
     <style name="BugleTheme.ArchivedConversationListActivity" parent="BugleTheme.ConversationListActivity">
         <item name="colorPrimary">@color/archived_conversation_action_bar_background_color</item>
-        <item name="colorPrimaryDark">@color/archived_conversation_action_bar_background_color_dark</item>
+        <item name="colorPrimaryDark">@color/archived_conversation_status_bar_background_color</item>
     </style>
 
     <style name="BugleTheme.SettingsActivity" parent="BugleTheme">
@@ -450,7 +450,7 @@
     </style>
 
     <style name="ColorAccentBlueOverrideStyle">
-        <item name="colorAccent">@color/action_bar_background_color</item>
+        <item name="colorAccent">@color/accent_color</item>
     </style>
 
     <style name="ColorAccentGrayOverrideStyle">

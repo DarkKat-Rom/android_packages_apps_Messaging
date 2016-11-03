@@ -137,7 +137,7 @@ public class GalleryGridItemView extends FrameLayout {
     private void updateImageView() {
         if (mData.isDocumentPickerItem()) {
             mImageView.setScaleType(ScaleType.CENTER);
-            setBackgroundColor(ConversationDrawables.get().getConversationThemeColor());
+            setBackgroundColor(ConversationDrawables.get().getConversationPrimaryColor());
             mImageView.setImageResourceId(null);
             mImageView.setImageResource(R.drawable.ic_photo_library_light);
             mImageView.setContentDescription(getResources().getString(

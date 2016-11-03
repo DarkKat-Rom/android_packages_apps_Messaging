@@ -76,7 +76,7 @@ public class AudioAttachmentView extends LinearLayout {
     private int mClipPathHeight;
 
     private boolean mUseIncomingStyle;
-    private int mThemeColor;
+    private int mAccentColor;
 
     private boolean mStartPlayAfterPrepare;
     // should the MediaPlayer be prepared lazily when the user chooses to play the audio (as
@@ -173,13 +173,13 @@ public class AudioAttachmentView extends LinearLayout {
             final Uri dataSourceUri, final boolean incoming, final boolean showAsSelected) {
         final String currentUriString = (mDataSourceUri == null) ? "" : mDataSourceUri.toString();
         final String newUriString = (dataSourceUri == null) ? "" : dataSourceUri.toString();
-        final int themeColor = ConversationDrawables.get().getConversationThemeColor();
+        final int accentColor = ConversationDrawables.get().getConversationAccentColor();
         final boolean useIncomingStyle = incoming || showAsSelected;
-        final boolean visualStyleChanged = mThemeColor != themeColor ||
+        final boolean visualStyleChanged = mAccentColor != accentColor ||
                 mUseIncomingStyle != useIncomingStyle;
 
         mUseIncomingStyle = useIncomingStyle;
-        mThemeColor = themeColor;
+        mAccentColor = accentColor;
         mPrepareOnPlayback = incoming && !MediaUtil.canAutoAccessIncomingMedia();
 
         if (!TextUtils.equals(currentUriString, newUriString)) {

@@ -51,7 +51,10 @@ public class ConversationDrawables {
     private int mIncomingErrorBubbleColor;
     private int mIncomingAudioButtonColor;
     private int mSelectedBubbleColor;
-    private int mThemeColor;
+    private int mActionBarColor;
+    private int mStatusBarColor;
+    private int mPrimaryColor;
+    private int mAccentColor;
 
     public static ConversationDrawables get() {
         if (sInstance == null) {
@@ -66,8 +69,20 @@ public class ConversationDrawables {
         updateDrawables();
     }
 
-    public int getConversationThemeColor() {
-        return mThemeColor;
+    public int getConversationActionBarColor() {
+        return mActionBarColor;
+    }
+
+    public int getConversationStatusBarColor() {
+        return mStatusBarColor;
+    }
+
+    public int getConversationPrimaryColor() {
+        return mPrimaryColor;
+    }
+
+    public int getConversationAccentColor() {
+        return mAccentColor;
     }
 
     public void updateDrawables() {
@@ -101,7 +116,10 @@ public class ConversationDrawables {
         mIncomingAudioButtonColor =
                 resources.getColor(R.color.message_audio_button_color_incoming);
         mSelectedBubbleColor = resources.getColor(R.color.message_bubble_color_selected);
-        mThemeColor = resources.getColor(R.color.primary_color);
+        mActionBarColor = resources.getColor(R.color.action_bar_background_color);
+        mStatusBarColor = resources.getColor(R.color.status_bar_background_color);
+        mPrimaryColor = resources.getColor(R.color.primary_color);
+        mAccentColor = resources.getColor(R.color.accent_color);
     }
 
     public Drawable getBubbleDrawable(final boolean selected, final boolean incoming,
@@ -127,7 +145,7 @@ public class ConversationDrawables {
             if (isError) {
                 color = mIncomingErrorBubbleColor;
             } else {
-                color = mThemeColor;
+                color = mAccentColor;
             }
         } else {
             color = mOutgoingBubbleColor;
@@ -137,7 +155,7 @@ public class ConversationDrawables {
     }
 
     private int getAudioButtonColor(final boolean incoming) {
-        return incoming ? mIncomingAudioButtonColor : mThemeColor;
+        return incoming ? mIncomingAudioButtonColor : mAccentColor;
     }
 
     public Drawable getPlayButtonDrawable(final boolean incoming) {
@@ -163,7 +181,7 @@ public class ConversationDrawables {
     public Drawable getFastScrollThumbDrawable(final boolean pressed) {
         if (pressed) {
             return ImageUtils.getTintedDrawable(mContext, mFastScrollThumbPressedDrawable,
-                    mThemeColor);
+                    mAccentColor);
         } else {
             return mFastScrollThumbDrawable;
         }
@@ -172,6 +190,6 @@ public class ConversationDrawables {
     public Drawable getFastScrollPreviewDrawable(boolean positionRight) {
         Drawable protoDrawable = positionRight ? mFastScrollPreviewDrawableRight :
             mFastScrollPreviewDrawableLeft;
-        return ImageUtils.getTintedDrawable(mContext, protoDrawable, mThemeColor);
+        return ImageUtils.getTintedDrawable(mContext, protoDrawable, mAccentColor);
     }
 }

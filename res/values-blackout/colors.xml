@@ -17,16 +17,17 @@
 <resources>
 
     <!-- Blackout theme -->
-    <color name="blackout_bg">#ff000000</color>
+    <color name="primary_color">#191919</color>
 
     <color name="contextual_action_bar_background_color">@color/message_bubble_color_selected</color>
     <color name="archived_conversation_action_bar_background_color">@color/blackout_bg</color>
-    <color name="archived_conversation_action_bar_background_color_dark">@color/blackout_bg</color>
+    <color name="archived_conversation_status_bar_background_color">@color/primary_color</color>
 
-    <color name="conversation_list_name">#ffffffff</color>
-    <color name="conversation_list_details">#b3ffffff</color>
     <color name="conversation_list_item_read">#b3ffffff</color>
     <color name="conversation_list_item_unread">#ffffffff</color> 
+    <color name="conversation_list_name">#ffffffff</color>
+    <color name="conversation_list_details">#b3ffffff</color>
+
     <color name="conversation_compose_divider_start">#44ffffff</color>
 
     <color name="message_text">#ffffffff</color>
@@ -35,22 +36,20 @@
 
     <color name="message_title_text">#ffffffff</color>
     <color name="message_download_failed_status_text">#ffffffff</color>
-    <color name="message_info_text_incoming_download_failed">#6affffff</color>
+    <color name="message_info_text_incoming_download_failed">#b3ffffff</color>
 
-    <color name="subject_editor_bubble">@color/blackout_bg</color>
-    <color name="message_text_color_incoming_download_failed">#6affffff</color>
-    <color name="message_text_color_outgoing">#b3ffffff</color>
+    <color name="subject_editor_bubble">#191919</color>
+    <color name="message_text_color_incoming_download_failed">#b3ffffff</color>
+    <color name="message_text_color_outgoing">#ffffffff</color>
     <color name="conversation_background">@color/blackout_bg</color>
-    <color name="conversation_edge_effect">#626262</color>
+    <color name="conversation_edge_effect">#31ffffff</color>
     <color name="compose_message_send_color_pressed">#cccccc</color>
-    <color name="message_bubble_color_outgoing">@color/blackout_bg</color>
-    <color name="message_error_bubble_color_incoming">@color/blackout_bg</color>
-    <color name="message_audio_button_color_incoming">@color/blackout_bg</color>
+    <color name="message_bubble_color_outgoing">@color/primary_color</color>
+    <color name="message_error_bubble_color_incoming">#212121</color>
+    <color name="message_audio_button_color_incoming">@color/primary_color</color>
     <color name="generic_video_icon">#ffffffff</color>
 
-    <color name="color_filter_base_color">#ffffffff</color>
-
-    <color name="contact_avatar_default_background">@color/blackout_bg</color>
+    <color name="contact_avatar_default_background">@color/primary_color</color>
     <color name="contact_avatar_pressed_color">#40ffffff</color>
     <color name="contact_list_text_primary">#ffffffff</color>
     <color name="contact_list_text_secondary">#b3ffffff</color>
@@ -59,7 +58,7 @@
     <color name="contact_picker_background">@color/blackout_bg</color>
     <color name="chips_dropdown_background_pressed">#cccccc</color>
 
-    <color name="gallery_image_default_background">@color/blackout_bg</color>
+    <color name="gallery_image_default_background">@color/primary_color</color>
     <color name="gallery_image_pressed">#ccffffff</color>
 
     <color name="audio_picker_level_primary_color">#29ffffff</color>
@@ -82,10 +81,8 @@
 
     <color name="sim_selector_text_primary">#ffffff</color>
     <color name="sim_selector_text_secondary">#b3ffffff</color>
-    <color name="sim_selector_background_end">#cc1f2429</color>
-    <color name="sim_selector_background_start">@color/blackout_bg</color>
-    <color name="sim_indicator_color_light">#ffffff</color>
-    <color name="sim_indicator_color_dark">#323232</color>
+    <color name="sim_selector_background_end">#cc191919</color>
+    <color name="sim_selector_background_start">#ff191919</color>
 
     <color name="search_view_text_cursor">#ffffffff</color>
 
@@ -102,8 +99,8 @@
 
     <color name="ripple_material_light">#33ffffff</color>
 
-    <color name="attachment_chooser_audio_background">@color/blackout_bg</color>
-    <color name="attachment_chooser_vcard_background">@color/blackout_bg</color>
+    <color name="attachment_chooser_audio_background">@color/primary_color</color>
+    <color name="attachment_chooser_vcard_background">@color/primary_color</color>
 
     <color name="fastscroll_track_color">#1effffff</color>
     <color name="fastscroll_thumb_color">#42ffffff</color>

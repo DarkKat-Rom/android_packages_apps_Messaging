@@ -96,7 +96,7 @@ public class AudioRecordView extends FrameLayout implements
 
     private int mCurrentMode = MODE_IDLE;
     private HostInterface mHostInterface;
-    private int mThemeColor;
+    private int mAccentColor;
 
     public AudioRecordView(final Context context, final AttributeSet attrs) {
         super(context, attrs);
@@ -218,8 +218,8 @@ public class AudioRecordView extends FrameLayout implements
         updateRecordButtonAppearance();
     }
 
-    public void setThemeColor(final int color) {
-        mThemeColor = color;
+    public void setAccentColor(final int color) {
+        mAccentColor = color;
         updateRecordButtonAppearance();
     }
 
@@ -229,9 +229,9 @@ public class AudioRecordView extends FrameLayout implements
                 .getDrawable(R.drawable.audio_record_control_button_background));
         if (isRecording()) {
             foregroundDrawable.setColorFilter(Color.WHITE, PorterDuff.Mode.SRC_ATOP);
-            backgroundDrawable.setColor(mThemeColor);
+            backgroundDrawable.setColor(mAccentColor);
         } else {
-            foregroundDrawable.setColorFilter(mThemeColor, PorterDuff.Mode.SRC_ATOP);
+            foregroundDrawable.setColorFilter(mAccentColor, PorterDuff.Mode.SRC_ATOP);
             backgroundDrawable.setColor(Color.WHITE);
         }
         mRecordButtonVisual.setImageDrawable(foregroundDrawable);
