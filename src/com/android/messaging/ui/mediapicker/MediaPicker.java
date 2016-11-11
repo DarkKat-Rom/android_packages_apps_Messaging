@@ -156,9 +156,6 @@ public class MediaPicker extends Fragment implements DraftMessageSubscriptionDat
     /** The accent color to use to make the media picker match the rest of the UI */
     private int mAccentColor;
 
-    /** The primary color to use to make the media picker match the rest of the UI */
-    private int mPrimaryColor;
-
     @VisibleForTesting
     final Binding<MediaPickerData> mBinding = BindingBase.createBinding(this);
 
@@ -228,7 +225,7 @@ public class MediaPicker extends Fragment implements DraftMessageSubscriptionDat
                 false);
         mMediaPickerPanel.setMediaPicker(this);
         mTabStrip = (LinearLayout) mMediaPickerPanel.findViewById(R.id.mediapicker_tabstrip);
-        mTabStrip.setBackgroundColor(mPrimaryColor);
+        mTabStrip.setBackgroundColor(mAccentColor);
         for (final MediaChooser chooser : mChoosers) {
             chooser.onCreateTabButton(inflater, mTabStrip);
             final boolean enabled = (chooser.getSupportedMediaTypes() & mSupportedMediaTypes) !=
@@ -308,19 +305,17 @@ public class MediaPicker extends Fragment implements DraftMessageSubscriptionDat
     }
 
     /**
-     * Sets the accent and primary color to make the media picker match the surrounding UI
+     * Sets the accent color to make the media picker match the surrounding UI
      * @param accentColor The new accent color
-     * @param primaryColor The new primary color
      */
-    public void setConversationColors(final int accentColor, final int primaryColor) {
+    public void updateThemeColors(final int accentColor) {
         mAccentColor = accentColor;
-        mPrimaryColor = primaryColor;
         if (mTabStrip != null) {
-            mTabStrip.setBackgroundColor(mPrimaryColor);
+            mTabStrip.setBackgroundColor(mAccentColor);
         }
 
         for (final MediaChooser chooser : mEnabledChoosers) {
-            chooser.setAccentColor(mAccentColor);
+            chooser.updateThemeColors(mAccentColor);
         }
     }
 

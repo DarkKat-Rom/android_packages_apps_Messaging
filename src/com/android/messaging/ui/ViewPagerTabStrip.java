@@ -46,7 +46,7 @@ public class ViewPagerTabStrip extends LinearLayout {
         mSelectedUnderlineThickness =
                 res.getDimensionPixelSize(R.dimen.pager_tab_underline_selected);
         int underlineColor = res.getColor(R.color.contact_picker_tab_underline);
-        int backgroundColor = res.getColor(R.color.action_bar_background_color);
+        int backgroundColor = res.getColor(R.color.primary_color);
 
         mSelectedUnderlinePaint = new Paint();
         mSelectedUnderlinePaint.setColor(underlineColor);

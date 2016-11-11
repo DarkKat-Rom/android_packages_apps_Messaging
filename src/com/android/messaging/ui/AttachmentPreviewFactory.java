@@ -270,7 +270,7 @@ public class AttachmentPreviewFactory {
         final AudioAttachmentView audioView = (AudioAttachmentView)
                 view.findViewById(R.id.audio_attachment_view);
         audioView.bindMessagePartData(
-                attachmentData, false /* incoming */, false /* showAsSelected */);
+                attachmentData, false /* incoming */, false /* showAsSelected */, "");
         return view;
     }
 

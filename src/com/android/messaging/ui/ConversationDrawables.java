@@ -15,9 +15,12 @@
  */
 package com.android.messaging.ui;
 
+import android.app.UiModeManager;
 import android.content.Context;
 import android.content.res.Resources;
+import android.content.res.TypedArray;
 import android.graphics.drawable.Drawable;
+import android.text.TextUtils;
 
 import com.android.messaging.Factory;
 import com.android.messaging.R;
@@ -28,17 +31,33 @@ import com.android.messaging.util.ImageUtils;
  * message bubbles, audio attachments etc.
  */
 public class ConversationDrawables {
+    public static final int PRIMARY_COLOR      = 0;
+    public static final int PRIMARY_COLOR_DARK = 1;
+    public static final int ACCENT_COLOR       = 2;
+    public static final int LETTER_TILE_COLOR  = 3;
+
     private static ConversationDrawables sInstance;
 
     // Cache the color filtered bubble drawables so that we don't need to create a
     // new one for each ConversationMessageView.
+    private final Context mContext;
+    private int mPrimaryColor;
+    private int mPrimaryColorDark;
+    private int mAccentColor;
+    private int mIncomingAudioButtonColor;
+    private int mIncomingErrorBubbleColor;
+    private int mOutgoingBubbleColor;
+    private int mSelectedBubbleColor;
+    private int mLetterTileColor;
     private Drawable mIncomingBubbleDrawable;
     private Drawable mOutgoingBubbleDrawable;
     private Drawable mIncomingErrorBubbleDrawable;
     private Drawable mIncomingBubbleNoArrowDrawable;
     private Drawable mOutgoingBubbleNoArrowDrawable;
     private Drawable mAudioPlayButtonDrawable;
+    private Drawable mAudioPlayButtonOutgoingNightDrawable;
     private Drawable mAudioPauseButtonDrawable;
+    private Drawable mAudioPauseButtonOutgoingNightDrawable;
     private Drawable mIncomingAudioProgressBackgroundDrawable;
     private Drawable mOutgoingAudioProgressBackgroundDrawable;
     private Drawable mAudioProgressForegroundDrawable;
@@ -46,15 +65,6 @@ public class ConversationDrawables {
     private Drawable mFastScrollThumbPressedDrawable;
     private Drawable mFastScrollPreviewDrawableLeft;
     private Drawable mFastScrollPreviewDrawableRight;
-    private final Context mContext;
-    private int mOutgoingBubbleColor;
-    private int mIncomingErrorBubbleColor;
-    private int mIncomingAudioButtonColor;
-    private int mSelectedBubbleColor;
-    private int mActionBarColor;
-    private int mStatusBarColor;
-    private int mPrimaryColor;
-    private int mAccentColor;
 
     public static ConversationDrawables get() {
         if (sInstance == null) {
@@ -69,25 +79,19 @@ public class ConversationDrawables {
         updateDrawables();
     }
 
-    public int getConversationActionBarColor() {
-        return mActionBarColor;
-    }
-
-    public int getConversationStatusBarColor() {
-        return mStatusBarColor;
-    }
-
-    public int getConversationPrimaryColor() {
-        return mPrimaryColor;
-    }
-
-    public int getConversationAccentColor() {
-        return mAccentColor;
-    }
-
     public void updateDrawables() {
         final Resources resources = mContext.getResources();
 
+        mPrimaryColor = resources.getColor(R.color.primary_color);
+        mPrimaryColorDark = resources.getColor(R.color.primary_color_dark);
+        mAccentColor = resources.getColor(R.color.accent_color);
+        mIncomingErrorBubbleColor =
+                resources.getColor(R.color.message_error_bubble_color_incoming);
+        mIncomingAudioButtonColor =
+                resources.getColor(R.color.message_audio_button_color_incoming);
+        mOutgoingBubbleColor = resources.getColor(R.color.message_bubble_color_outgoing);
+        mSelectedBubbleColor = resources.getColor(R.color.message_bubble_color_selected);
+        mLetterTileColor = resources.getColor(R.color.letter_tile_default_color);
         mIncomingBubbleDrawable = resources.getDrawable(R.drawable.msg_bubble_incoming);
         mIncomingBubbleNoArrowDrawable =
                 resources.getDrawable(R.drawable.message_bubble_incoming_no_arrow);
@@ -96,7 +100,9 @@ public class ConversationDrawables {
         mOutgoingBubbleNoArrowDrawable =
                 resources.getDrawable(R.drawable.message_bubble_outgoing_no_arrow);
         mAudioPlayButtonDrawable = resources.getDrawable(R.drawable.ic_audio_play);
+        mAudioPlayButtonOutgoingNightDrawable = resources.getDrawable(R.drawable.ic_audio_play_night);
         mAudioPauseButtonDrawable = resources.getDrawable(R.drawable.ic_audio_pause);
+        mAudioPauseButtonOutgoingNightDrawable = resources.getDrawable(R.drawable.ic_audio_pause_night);
         mIncomingAudioProgressBackgroundDrawable =
                 resources.getDrawable(R.drawable.audio_progress_bar_background_incoming);
         mOutgoingAudioProgressBackgroundDrawable =
@@ -110,20 +116,46 @@ public class ConversationDrawables {
                 resources.getDrawable(R.drawable.fastscroll_preview_left);
         mFastScrollPreviewDrawableRight =
                 resources.getDrawable(R.drawable.fastscroll_preview_right);
-        mOutgoingBubbleColor = resources.getColor(R.color.message_bubble_color_outgoing);
-        mIncomingErrorBubbleColor =
-                resources.getColor(R.color.message_error_bubble_color_incoming);
-        mIncomingAudioButtonColor =
-                resources.getColor(R.color.message_audio_button_color_incoming);
-        mSelectedBubbleColor = resources.getColor(R.color.message_bubble_color_selected);
-        mActionBarColor = resources.getColor(R.color.action_bar_background_color);
-        mStatusBarColor = resources.getColor(R.color.status_bar_background_color);
-        mPrimaryColor = resources.getColor(R.color.primary_color);
-        mAccentColor = resources.getColor(R.color.accent_color);
+    }
+
+    public int getDefaultPrimaryColor() {
+        return mPrimaryColor;
+    }
+
+    public int getDefaultAccentColor() {
+        return mAccentColor;
+    }
+
+    public int getDefaultLetterTileColor() {
+        return mLetterTileColor;
+    }
+
+    private int getAudioButtonColor(final boolean incoming, final String identifier) {
+        return incoming ? mIncomingAudioButtonColor : getContactThemeColor(identifier, ACCENT_COLOR);
+    }
+
+    public int getContactThemeColor(final String identifier, final int colorDefault) {
+        int defaultColor = mPrimaryColor;
+        if (colorDefault == PRIMARY_COLOR_DARK) {
+            defaultColor = mPrimaryColorDark;
+        } else if (colorDefault == ACCENT_COLOR) {
+            defaultColor = mAccentColor;
+        } else if (colorDefault == LETTER_TILE_COLOR) {
+            defaultColor = mLetterTileColor;
+        }
+
+        if (TextUtils.isEmpty(identifier)) {
+            return defaultColor;
+        } else {
+            TypedArray colors = mContext.getResources().obtainTypedArray(colorDefault == PRIMARY_COLOR_DARK
+                    ? R.array.letter_tile_colors_dark : R.array.letter_tile_colors);
+            int color = Math.abs(identifier.hashCode()) % colors.length();
+            return colors.getColor(color, defaultColor);
+        }
     }
 
     public Drawable getBubbleDrawable(final boolean selected, final boolean incoming,
-            final boolean needArrow, final boolean isError) {
+            final boolean needArrow, final boolean isError, final String identifier) {
         final Drawable protoDrawable;
         if (needArrow) {
             if (incoming) {
@@ -145,7 +177,7 @@ public class ConversationDrawables {
             if (isError) {
                 color = mIncomingErrorBubbleColor;
             } else {
-                color = mAccentColor;
+                color = getContactThemeColor(identifier, ACCENT_COLOR);
             }
         } else {
             color = mOutgoingBubbleColor;
@@ -154,23 +186,43 @@ public class ConversationDrawables {
         return ImageUtils.getTintedDrawable(mContext, protoDrawable, color);
     }
 
-    private int getAudioButtonColor(final boolean incoming) {
-        return incoming ? mIncomingAudioButtonColor : mAccentColor;
+    public Drawable getPlayButtonDrawable(final boolean incoming, final String identifier) {
+        return ImageUtils.getTintedDrawable(
+                mContext, incoming ? mAudioPlayButtonDrawable : getPlayButtonOutgoingDrawable(),
+                getAudioButtonColor(incoming, identifier));
     }
 
-    public Drawable getPlayButtonDrawable(final boolean incoming) {
+    public Drawable getPauseButtonDrawable(final boolean incoming, final String identifier) {
         return ImageUtils.getTintedDrawable(
-                mContext, mAudioPlayButtonDrawable, getAudioButtonColor(incoming));
+                mContext,  incoming ? mAudioPauseButtonDrawable : getPauseButtonOutgoingDrawable(),
+                getAudioButtonColor(incoming, identifier));
     }
 
-    public Drawable getPauseButtonDrawable(final boolean incoming) {
-        return ImageUtils.getTintedDrawable(
-                mContext, mAudioPauseButtonDrawable, getAudioButtonColor(incoming));
+    private Drawable getPlayButtonOutgoingDrawable() {
+        final UiModeManager uiManager = (UiModeManager) mContext.getSystemService(
+                Context.UI_MODE_SERVICE);
+        boolean isDayTheme = uiManager.getNightMode() == 1;
+        if (isDayTheme) {
+            return mAudioPlayButtonDrawable;
+        } else {
+            return mAudioPlayButtonOutgoingNightDrawable;
+        }
     }
 
-    public Drawable getAudioProgressDrawable(final boolean incoming) {
+    private Drawable getPauseButtonOutgoingDrawable() {
+        final UiModeManager uiManager = (UiModeManager) mContext.getSystemService(
+                Context.UI_MODE_SERVICE);
+        boolean isDayTheme = uiManager.getNightMode() == 1;
+        if (isDayTheme) {
+            return mAudioPauseButtonDrawable;
+        } else {
+            return mAudioPauseButtonOutgoingNightDrawable;
+        }
+    }
+
+    public Drawable getAudioProgressDrawable(final boolean incoming, final String identifier) {
         return ImageUtils.getTintedDrawable(
-                mContext, mAudioProgressForegroundDrawable, getAudioButtonColor(incoming));
+                mContext, mAudioProgressForegroundDrawable, getAudioButtonColor(incoming, identifier));
     }
 
     public Drawable getAudioProgressBackgroundDrawable(final boolean incoming) {
@@ -178,18 +230,18 @@ public class ConversationDrawables {
             mOutgoingAudioProgressBackgroundDrawable;
     }
 
-    public Drawable getFastScrollThumbDrawable(final boolean pressed) {
+    public Drawable getFastScrollThumbDrawable(final boolean pressed, final String identifier) {
         if (pressed) {
             return ImageUtils.getTintedDrawable(mContext, mFastScrollThumbPressedDrawable,
-                    mAccentColor);
+                    getContactThemeColor(identifier, ACCENT_COLOR));
         } else {
             return mFastScrollThumbDrawable;
         }
     }
 
-    public Drawable getFastScrollPreviewDrawable(boolean positionRight) {
+    public Drawable getFastScrollPreviewDrawable(boolean positionRight, final String identifier) {
         Drawable protoDrawable = positionRight ? mFastScrollPreviewDrawableRight :
             mFastScrollPreviewDrawableLeft;
-        return ImageUtils.getTintedDrawable(mContext, protoDrawable, mAccentColor);
+        return ImageUtils.getTintedDrawable(mContext, protoDrawable, getContactThemeColor(identifier, ACCENT_COLOR));
     }
 }

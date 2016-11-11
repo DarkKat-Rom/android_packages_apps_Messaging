@@ -577,7 +577,7 @@ public class ContactPickerFragment extends Fragment implements ContactPickerData
         // etc. will take the spot of the action bar.
         actionBar.hide();
         UiUtils.setStatusBarColor(getActivity(),
-                getResources().getColor(R.color.status_bar_background_color));
+                getResources().getColor(R.color.primary_color_dark));
     }
 
     private GetOrCreateConversationActionMonitor mMonitor;

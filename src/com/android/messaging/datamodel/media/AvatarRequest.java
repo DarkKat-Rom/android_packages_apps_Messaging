@@ -29,6 +29,7 @@ import android.media.ExifInterface;
 import android.net.Uri;
 
 import com.android.messaging.R;
+import com.android.messaging.ui.ConversationDrawables;
 import com.android.messaging.util.Assert;
 import com.android.messaging.util.AvatarUriUtil;
 import com.android.messaging.util.LogUtil;
@@ -104,9 +105,10 @@ public class AvatarRequest extends UriImageRequest<AvatarRequestDescriptor> {
             }
 
             avatarType = AvatarUriUtil.getAvatarType(generatedUri);
+            String identifier = AvatarUriUtil.getIdentifier(generatedUri);
             if (AvatarUriUtil.TYPE_LETTER_TILE_URI.equals(avatarType)) {
                 final String name = AvatarUriUtil.getName(generatedUri);
-                bitmap = renderLetterTile(name, width, height);
+                bitmap = renderLetterTile(name, identifier, width, height);
             } else {
                 bitmap = renderDefaultAvatar(width, height);
             }
@@ -115,8 +117,8 @@ public class AvatarRequest extends UriImageRequest<AvatarRequestDescriptor> {
     }
 
     private Bitmap renderDefaultAvatar(final int width, final int height) {
-        final Bitmap bitmap = getBitmapPool().createOrReuseBitmap(width, height,
-                getBackgroundColor());
+        final int backgroundColor = ConversationDrawables.get().getDefaultLetterTileColor();
+        final Bitmap bitmap = getBitmapPool().createOrReuseBitmap(width, height, backgroundColor);
         final Canvas canvas = new Canvas(bitmap);
 
         if (sDefaultPersonBitmap == null) {
@@ -153,12 +155,13 @@ public class AvatarRequest extends UriImageRequest<AvatarRequestDescriptor> {
         return bitmap;
     }
 
-    private Bitmap renderLetterTile(final String name, final int width, final int height) {
+    private Bitmap renderLetterTile(final String name, final String identifier, final int width, final int height) {
         final float halfWidth = width / 2;
         final float halfHeight = height / 2;
         final int minOfWidthAndHeight = Math.min(width, height);
-        final Bitmap bitmap = getBitmapPool().createOrReuseBitmap(width, height,
-                getBackgroundColor());
+        final int backgroundColor = ConversationDrawables.get().getContactThemeColor(identifier,
+                 ConversationDrawables.LETTER_TILE_COLOR);
+        final Bitmap bitmap = getBitmapPool().createOrReuseBitmap(width, height, backgroundColor);
         final Resources resources = mContext.getResources();
         final Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
         paint.setTypeface(Typeface.create("sans-serif-thin", Typeface.NORMAL));
@@ -176,10 +179,6 @@ public class AvatarRequest extends UriImageRequest<AvatarRequestDescriptor> {
         canvas.drawText(firstCharString, xOffset, yOffset, paint);
 
         return bitmap;
-    }
-
-    private int getBackgroundColor() {
-        return mContext.getResources().getColor(R.color.primary_color);
     }
 
     @Override

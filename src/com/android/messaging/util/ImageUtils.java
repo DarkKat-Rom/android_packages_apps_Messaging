@@ -30,6 +30,7 @@ import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.Shader.TileMode;
 import android.graphics.drawable.Drawable;
+import android.graphics.drawable.LayerDrawable;
 import android.net.Uri;
 import android.provider.MediaStore;
 import android.support.annotation.Nullable;
@@ -37,6 +38,7 @@ import android.text.TextUtils;
 import android.view.View;
 
 import com.android.messaging.Factory;
+import com.android.messaging.R;
 import com.android.messaging.datamodel.MediaScratchFileProvider;
 import com.android.messaging.datamodel.MessagingContentProvider;
 import com.android.messaging.datamodel.media.ImageRequest;
@@ -875,7 +877,12 @@ public class ImageUtils {
         final Drawable retDrawable = (constantStateDrawable != null)
                 ? constantStateDrawable.newDrawable(context.getResources()).mutate()
                 : drawable;
-        retDrawable.setColorFilter(color, PorterDuff.Mode.SRC_ATOP);
+        if (retDrawable instanceof LayerDrawable) {
+            ((LayerDrawable) retDrawable).findDrawableByLayerId(R.id.foreground)
+                    .setColorFilter(color, PorterDuff.Mode.SRC_ATOP);
+        } else {
+            retDrawable.setColorFilter(color, PorterDuff.Mode.SRC_ATOP);
+        }
         return retDrawable;
     }
 

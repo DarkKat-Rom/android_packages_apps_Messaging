@@ -92,6 +92,8 @@ public class ConversationFastScroller extends RecyclerView.OnScrollListener impl
     private final int mPreviewMarginLeftRight;
     private final int mTouchSlop;
 
+    private String mContactLookupKey = "";
+
     private final Rect mContainer = new Rect();
     private final Handler mHandler = new Handler();
 
@@ -149,7 +151,7 @@ public class ConversationFastScroller extends RecyclerView.OnScrollListener impl
         mThumbImageView = (ImageView) inflator.inflate(R.layout.fastscroll_thumb, null);
         mPreviewTextView = (TextView) inflator.inflate(R.layout.fastscroll_preview, null);
 
-        refreshConversationAccentColor();
+        refreshConversationAccentColor(mContactLookupKey);
 
         // Add the fast scroll views to the overlay, so they are rendered above the list
         mOverlay = rv.getOverlay();
@@ -161,22 +163,23 @@ public class ConversationFastScroller extends RecyclerView.OnScrollListener impl
         mPreviewTextView.setAlpha(0f);
     }
 
-    public void refreshConversationAccentColor() {
+    public void refreshConversationAccentColor(final String contactLookupKey) {
+        mContactLookupKey = contactLookupKey;
         mPreviewTextView.setBackground(
-                ConversationDrawables.get().getFastScrollPreviewDrawable(mPosRight));
+                ConversationDrawables.get().getFastScrollPreviewDrawable(mPosRight, mContactLookupKey));
         if (OsUtil.isAtLeastL()) {
             final StateListDrawable drawable = new StateListDrawable();
             drawable.addState(new int[]{ android.R.attr.state_pressed },
-                    ConversationDrawables.get().getFastScrollThumbDrawable(true /* pressed */));
+                    ConversationDrawables.get().getFastScrollThumbDrawable(true /* pressed */, mContactLookupKey));
             drawable.addState(StateSet.WILD_CARD,
-                    ConversationDrawables.get().getFastScrollThumbDrawable(false /* pressed */));
+                    ConversationDrawables.get().getFastScrollThumbDrawable(false /* pressed */, mContactLookupKey));
             mThumbImageView.setImageDrawable(drawable);
         } else {
             // Android pre-L doesn't seem to handle a StateListDrawable containing a tinted
             // drawable (it's rendered in the filter base color, which is red), so fall back to
             // just the regular (non-pressed) drawable.
             mThumbImageView.setImageDrawable(
-                    ConversationDrawables.get().getFastScrollThumbDrawable(false /* pressed */));
+                    ConversationDrawables.get().getFastScrollThumbDrawable(false /* pressed */, mContactLookupKey));
         }
     }
 

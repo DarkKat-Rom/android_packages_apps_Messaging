@@ -44,7 +44,6 @@
     <color name="compose_message_send_color_pressed">#cccccc</color>
     <color name="message_bubble_color_outgoing">@color/darkkat_blue_blue_grey</color>
     <color name="message_error_bubble_color_incoming">#1d1d1d</color>
-    <color name="message_audio_button_color_incoming">@color/darkkat_blue_blue_grey</color>
     <color name="generic_video_icon">#ffffffff</color>
 
     <color name="contact_avatar_default_background">#1d1d1d</color>

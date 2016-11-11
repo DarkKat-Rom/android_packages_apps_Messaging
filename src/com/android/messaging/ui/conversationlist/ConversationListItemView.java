@@ -466,7 +466,7 @@ public class ConversationListItemView extends FrameLayout implements OnClickList
         if (previewUri != null && !TextUtils.isEmpty(previewContentType)) {
             if (ContentType.isAudioType(previewContentType)) {
                 boolean incoming = !(mData.getShowDraft() || mData.getIsMessageTypeOutgoing());
-                mAudioAttachmentView.bind(previewUri, incoming, false);
+                mAudioAttachmentView.bind(previewUri, incoming, false, mData.getParticipantLookupKey());
                 audioPreviewVisiblity = VISIBLE;
             } else if (ContentType.isVideoType(previewContentType)) {
                 previewImageUri = UriUtil.getUriForResourceId(

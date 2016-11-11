@@ -54,6 +54,7 @@ public class GalleryGridItemView extends FrameLayout {
     private AsyncImageView mImageView;
     private CheckBox mCheckBox;
     private HostInterface mHostInterface;
+    private int mAccentColor;
     private final OnClickListener mOnClickListener = new OnClickListener() {
         @Override
         public void onClick(final View v) {
@@ -114,11 +115,12 @@ public class GalleryGridItemView extends FrameLayout {
         super.onMeasure(widthMeasureSpec, widthMeasureSpec);
     }
 
-    public void bind(final Cursor cursor, final HostInterface hostInterface) {
+    public void bind(final Cursor cursor, final HostInterface hostInterface, final int color) {
         final int desiredSize = getResources()
                 .getDimensionPixelSize(R.dimen.gallery_image_cell_size);
         mData.bind(cursor, desiredSize, desiredSize);
         mHostInterface = hostInterface;
+        mAccentColor = color;
         updateViewState();
     }
 
@@ -137,7 +139,7 @@ public class GalleryGridItemView extends FrameLayout {
     private void updateImageView() {
         if (mData.isDocumentPickerItem()) {
             mImageView.setScaleType(ScaleType.CENTER);
-            setBackgroundColor(ConversationDrawables.get().getConversationPrimaryColor());
+            setBackgroundColor(mAccentColor);
             mImageView.setImageResourceId(null);
             mImageView.setImageResource(R.drawable.ic_photo_library_light);
             mImageView.setContentDescription(getResources().getString(

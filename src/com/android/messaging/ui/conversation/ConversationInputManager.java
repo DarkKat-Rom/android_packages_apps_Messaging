@@ -192,6 +192,10 @@ public class ConversationInputManager implements ConversationInput.ConversationI
         showHideInternal(mMediaInput, show, animate);
     }
 
+    public void updateThemeColors(final int accentColor) {
+        mMediaInput.updateThemeColors(accentColor);
+    }
+
     /**
      * Show or hide the sim selector
      * @param show visibility
@@ -345,13 +349,13 @@ public class ConversationInputManager implements ConversationInput.ConversationI
         }
 
         private MediaPicker mMediaPicker;
+        private int mAccentColor = ConversationDrawables.get().getDefaultAccentColor();
 
         @Override
         public boolean show(boolean animate) {
             if (mMediaPicker == null) {
                 mMediaPicker = getExistingOrCreateMediaPicker();
-                setConversationColors(ConversationDrawables.get().getConversationAccentColor(),
-                        ConversationDrawables.get().getConversationPrimaryColor());
+                updateThemeColors(mAccentColor);
                 mMediaPicker.setSubscriptionDataProvider(mHost);
                 mMediaPicker.setDraftMessageDataModel(mDraftDataModel);
                 mMediaPicker.setListener(new MediaPickerListener() {
@@ -436,9 +440,10 @@ public class ConversationInputManager implements ConversationInput.ConversationI
             }
         }
 
-        public void setConversationColors(final int accentColor, final int primaryColor) {
+        public void updateThemeColors(final int accentColor) {
+            mAccentColor = accentColor;
             if (mMediaPicker != null) {
-                mMediaPicker.setConversationColors(accentColor, primaryColor);
+                mMediaPicker.updateThemeColors(accentColor);
             }
         }
 

@@ -227,4 +227,8 @@ class GalleryMediaChooser extends MediaChooser implements
         mGalleryGridView.setVisibility(granted ? View.VISIBLE : View.GONE);
         mMissingPermissionView.setVisibility(granted ? View.GONE : View.VISIBLE);
     }
+
+    public void updateThemeColors(final int accentColor) {
+        mAdapter.setAccentColor(accentColor);
+    }
 }

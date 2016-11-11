@@ -59,9 +59,9 @@ class AudioMediaChooser extends MediaChooser implements
     }
 
     @Override
-    public void setAccentColor(final int color) {
+    public void updateThemeColors(final int accentColor) {
         if (mView != null) {
-            ((AudioRecordView) mView).setAccentColor(color);
+            ((AudioRecordView) mView).setAccentColor(accentColor);
         }
     }
 

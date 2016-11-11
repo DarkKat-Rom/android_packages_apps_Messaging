@@ -30,6 +30,7 @@ public class AudioAttachmentPlayPauseButton extends ViewSwitcher {
     private ImageView mPauseButton;
 
     private boolean mShowAsIncoming;
+    private String mContactLookupKey = "";
 
     public AudioAttachmentPlayPauseButton(final Context context, final AttributeSet attrs) {
         super(context, attrs);
@@ -43,17 +44,25 @@ public class AudioAttachmentPlayPauseButton extends ViewSwitcher {
         updateAppearance();
     }
 
-    public void setVisualStyle(final boolean showAsIncoming) {
+    public void setVisualStyle(final boolean showAsIncoming, final String contactLookupKey) {
+        boolean changed = false;
         if (mShowAsIncoming != showAsIncoming) {
             mShowAsIncoming = showAsIncoming;
+            changed = true;
+        }
+        if (mContactLookupKey != contactLookupKey) {
+            mContactLookupKey = contactLookupKey;
+            changed = true;
+        }
+        if (changed) {
             updateAppearance();
         }
     }
 
     private void updateAppearance() {
         mPlayButton.setImageDrawable(ConversationDrawables.get()
-                .getPlayButtonDrawable(mShowAsIncoming));
+                .getPlayButtonDrawable(mShowAsIncoming, mContactLookupKey));
         mPauseButton.setImageDrawable(ConversationDrawables.get()
-                .getPauseButtonDrawable(mShowAsIncoming));
+                .getPauseButtonDrawable(mShowAsIncoming, mContactLookupKey));
     }
 }

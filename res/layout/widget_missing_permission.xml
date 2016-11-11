@@ -22,5 +22,5 @@
     android:text="@string/required_permissions_promo"
     android:gravity="center"
     style="@android:style/TextAppearance.Medium"
-    android:background="@color/action_bar_background_color"
+    android:background="@color/primary_color"
     android:freezesText="true" />

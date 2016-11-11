@@ -35,6 +35,7 @@ public class AudioPlaybackProgressBar extends ProgressBar implements PlaybackSta
     private long mCumulativeTime = 0;
     private long mCurrentPlayStartTime = 0;
     private boolean mIncoming = false;
+    private String mContactLookupKey = "";
 
     public AudioPlaybackProgressBar(final Context context, final AttributeSet attrs) {
         super(context, attrs);
@@ -104,7 +105,7 @@ public class AudioPlaybackProgressBar extends ProgressBar implements PlaybackSta
 
     private void updateAppearance() {
         final Drawable drawable =
-                ConversationDrawables.get().getAudioProgressDrawable(mIncoming);
+                ConversationDrawables.get().getAudioProgressDrawable(mIncoming, mContactLookupKey);
         final ClipDrawable clipDrawable = new ClipDrawable(drawable, Gravity.START,
                 ClipDrawable.HORIZONTAL);
         setProgressDrawable(clipDrawable);
@@ -112,9 +113,17 @@ public class AudioPlaybackProgressBar extends ProgressBar implements PlaybackSta
                 .getAudioProgressBackgroundDrawable(mIncoming));
     }
 
-    public void setVisualStyle(final boolean incoming) {
+    public void setVisualStyle(final boolean incoming, final String contactLookupKey) {
+        boolean changed = false;
         if (mIncoming != incoming) {
             mIncoming = incoming;
+            changed = true;
+        }
+        if (mContactLookupKey != contactLookupKey) {
+            mContactLookupKey = contactLookupKey;
+            changed = true;
+        }
+        if (changed) {
             updateAppearance();
         }
     }

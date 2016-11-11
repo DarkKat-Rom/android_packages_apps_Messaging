@@ -77,6 +77,7 @@ public class AudioAttachmentView extends LinearLayout {
 
     private boolean mUseIncomingStyle;
     private int mAccentColor;
+    private String mContactLookupKey;
 
     private boolean mStartPlayAfterPrepare;
     // should the MediaPlayer be prepared lazily when the user chooses to play the audio (as
@@ -162,24 +163,26 @@ public class AudioAttachmentView extends LinearLayout {
      *        incoming message.
      */
     public void bindMessagePartData(final MessagePartData messagePartData,
-            final boolean incoming, final boolean showAsSelected) {
+            final boolean incoming, final boolean showAsSelected, final String identifier) {
         Assert.isTrue(messagePartData == null ||
                 ContentType.isAudioType(messagePartData.getContentType()));
         final Uri contentUri = (messagePartData == null) ? null : messagePartData.getContentUri();
-        bind(contentUri, incoming, showAsSelected);
+        bind(contentUri, incoming, showAsSelected, identifier);
     }
 
     public void bind(
-            final Uri dataSourceUri, final boolean incoming, final boolean showAsSelected) {
+            final Uri dataSourceUri, final boolean incoming, final boolean showAsSelected, final String contactLookupKey) {
         final String currentUriString = (mDataSourceUri == null) ? "" : mDataSourceUri.toString();
         final String newUriString = (dataSourceUri == null) ? "" : dataSourceUri.toString();
-        final int accentColor = ConversationDrawables.get().getConversationAccentColor();
+        final int accentColor = ConversationDrawables.get().getDefaultAccentColor();
         final boolean useIncomingStyle = incoming || showAsSelected;
         final boolean visualStyleChanged = mAccentColor != accentColor ||
-                mUseIncomingStyle != useIncomingStyle;
+                mUseIncomingStyle != useIncomingStyle ||
+                mContactLookupKey != contactLookupKey;
 
         mUseIncomingStyle = useIncomingStyle;
         mAccentColor = accentColor;
+        mContactLookupKey = contactLookupKey;
         mPrepareOnPlayback = incoming && !MediaUtil.canAutoAccessIncomingMedia();
 
         if (!TextUtils.equals(currentUriString, newUriString)) {
@@ -349,8 +352,8 @@ public class AudioAttachmentView extends LinearLayout {
         } else {
             mChronometer.setTextColor(getResources().getColor(R.color.message_text_color_outgoing));
         }
-        mProgressBar.setVisualStyle(mUseIncomingStyle);
-        mPlayPauseButton.setVisualStyle(mUseIncomingStyle);
+        mProgressBar.setVisualStyle(mUseIncomingStyle, mContactLookupKey);
+        mPlayPauseButton.setVisualStyle(mUseIncomingStyle, mContactLookupKey);
         updatePlayPauseButtonState();
     }
 

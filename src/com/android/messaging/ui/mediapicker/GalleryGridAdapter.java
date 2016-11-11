@@ -24,6 +24,7 @@ import android.view.ViewGroup;
 import android.widget.CursorAdapter;
 
 import com.android.messaging.R;
+import com.android.messaging.ui.ConversationDrawables;
 import com.android.messaging.ui.mediapicker.GalleryGridItemView.HostInterface;
 import com.android.messaging.util.Assert;
 
@@ -32,9 +33,11 @@ import com.android.messaging.util.Assert;
  */
 public class GalleryGridAdapter extends CursorAdapter {
     private GalleryGridItemView.HostInterface mGgivHostInterface;
+    private int mAccentColor;
 
     public GalleryGridAdapter(final Context context, final Cursor cursor) {
         super(context, cursor, 0);
+        mAccentColor = ConversationDrawables.get().getDefaultAccentColor();
     }
 
     public void setHostInterface(final HostInterface ggivHostInterface) {
@@ -48,7 +51,7 @@ public class GalleryGridAdapter extends CursorAdapter {
     public void bindView(final View view, final Context context, final Cursor cursor) {
         Assert.isTrue(view instanceof GalleryGridItemView);
         final GalleryGridItemView galleryImageView = (GalleryGridItemView) view;
-        galleryImageView.bind(cursor, mGgivHostInterface);
+        galleryImageView.bind(cursor, mGgivHostInterface, mAccentColor);
     }
 
     /**
@@ -58,5 +61,9 @@ public class GalleryGridAdapter extends CursorAdapter {
     public View newView(final Context context, final Cursor cursor, final ViewGroup parent) {
         final LayoutInflater layoutInflater = LayoutInflater.from(context);
         return layoutInflater.inflate(R.layout.gallery_grid_item_view, parent, false);
+    }
+
+    public void setAccentColor(final int color) {
+        mAccentColor = color;
     }
 }

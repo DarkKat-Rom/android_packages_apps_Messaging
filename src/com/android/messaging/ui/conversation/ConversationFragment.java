@@ -143,7 +143,7 @@ public class ConversationFragment extends Fragment implements ConversationDataLi
     private RecyclerView mRecyclerView;
     private ConversationMessageAdapter mAdapter;
     private ConversationFastScroller mFastScroller;
-
+    private ConversationInputManager mInputManager;
     private View mConversationComposeDivider;
     private ChangeDefaultSmsAppHelper mChangeDefaultSmsAppHelper;
 
@@ -451,10 +451,10 @@ public class ConversationFragment extends Fragment implements ConversationDataLi
 
         // Build the input manager with all its required dependencies and pass it along to the
         // compose message view.
-        final ConversationInputManager inputManager = new ConversationInputManager(
+        mInputManager = new ConversationInputManager(
                 getActivity(), this, mComposeMessageView, mHost, getFragmentManagerToUse(),
                 mBinding, mComposeMessageView.getDraftDataModel(), savedInstanceState);
-        mComposeMessageView.setInputManager(inputManager);
+        mComposeMessageView.setInputManager(mInputManager);
         mComposeMessageView.setConversationDataModel(BindingBase.createBindingReference(mBinding));
         mHost.invalidateActionBar();
 
@@ -1041,6 +1041,15 @@ public class ConversationFragment extends Fragment implements ConversationDataLi
         return mBinding.getData().getConversationName();
     }
 
+    public String getOtherParticipantLookupKey() {
+        String lookupKey = "";
+        ParticipantData participant = mBinding.getData().getOtherParticipant();
+        if (participant != null) {
+            lookupKey = participant.getLookupKey();
+        }
+        return lookupKey;
+    }
+
     @Override
     public void onComposeEditTextFocused() {
         mHost.onStartComposeMessage();
@@ -1534,16 +1543,24 @@ public class ConversationFragment extends Fragment implements ConversationDataLi
                 conversationId, REQUEST_CHOOSE_ATTACHMENTS);
     }
 
-    private void updateActionAndStatusBarColor(final ActionBar actionBar) {
-        final int actionBarColor = ConversationDrawables.get().getConversationActionBarColor();
-        final int statusBarColor = ConversationDrawables.get().getConversationStatusBarColor();
-        actionBar.setBackgroundDrawable(new ColorDrawable(actionBarColor));
-        UiUtils.setStatusBarColor(getActivity(), statusBarColor);
+    private void updateThemeColors(final ActionBar actionBar) {
+        final ConversationDrawables drawableProvider = ConversationDrawables.get();
+        final int primaryColor = drawableProvider.getContactThemeColor(getOtherParticipantLookupKey(),
+                ConversationDrawables.PRIMARY_COLOR);
+        final int primaryColorDark = drawableProvider.getContactThemeColor(getOtherParticipantLookupKey(),
+                ConversationDrawables.PRIMARY_COLOR_DARK);
+        final int accentColor = drawableProvider.getContactThemeColor(getOtherParticipantLookupKey(),
+                ConversationDrawables.ACCENT_COLOR);
+
+        actionBar.setBackgroundDrawable(new ColorDrawable(primaryColor));
+        UiUtils.setStatusBarColor(getActivity(), primaryColorDark);
+        mFastScroller.refreshConversationAccentColor(getOtherParticipantLookupKey());
+        mInputManager.updateThemeColors(accentColor);
     }
 
     public void updateActionBar(final ActionBar actionBar) {
         if (mComposeMessageView == null || !mComposeMessageView.updateActionBar(actionBar)) {
-            updateActionAndStatusBarColor(actionBar);
+            updateThemeColors(actionBar);
             // We update this regardless of whether or not the action bar is showing so that we
             // don't get a race when it reappears.
             actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);

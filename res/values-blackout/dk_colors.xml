@@ -19,21 +19,23 @@
     <!-- Blackout theme
          (additional colors) -->
     <color name="blackout_bg">#ff000000</color>
+    <color name="blackout_bg_secondary">#191919</color>
 
     <color name="primary_color_dark">@color/blackout_bg</color>
     <color name="accent_color">#0288d1</color>
 
     <color name="icon_tint">#ffffffff</color>
+    <color name="letter_tile_default_color">@color/blackout_bg_secondary</color>
 
     <color name="chips_dropdown_background_normal">@color/blackout_bg</color>
     <color name="chips_text_color_normal">#ffffff</color>
 
-    <color name="media_picker_background">#212121</color>
-    <color name="attachment_preview_background">@color/primary_color</color>
+    <color name="media_picker_background">@color/blackout_bg_secondary</color>
+    <color name="attachment_preview_background">@color/blackout_bg_secondary</color>
 
-    <color name="audio_record_control_button_background_color">@color/primary_color</color>
+    <color name="audio_progress_bar_background_color">#80ffffff</color>
 
     <color name="widget_loading_text_color">#ffffffff</color>
 
-    <color name="debug_and_dialog_background">@color/primary_color</color>
+    <color name="debug_and_dialog_background">@color/blackout_bg_secondary</color>
 </resources>

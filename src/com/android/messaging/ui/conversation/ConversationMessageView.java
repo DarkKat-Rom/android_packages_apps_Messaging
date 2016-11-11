@@ -700,7 +700,8 @@ public class ConversationMessageView extends FrameLayout implements View.OnClick
                         isSelected(),
                         incoming,
                         false /* needArrow */,
-                        mData.hasIncomingErrorStatus());
+                        mData.hasIncomingErrorStatus(),
+                        mData.getSenderContactLookupKey());
                 textMinHeight = messageTextMinHeightDefault;
                 textTopMargin = messageTopPaddingClustered;
                 textTopPadding = textTopPaddingDefault;
@@ -727,7 +728,8 @@ public class ConversationMessageView extends FrameLayout implements View.OnClick
                     isSelected(),
                     incoming,
                     shouldShowMessageBubbleArrow(),
-                    mData.hasIncomingErrorStatus());
+                    mData.hasIncomingErrorStatus(),
+                    mData.getSenderContactLookupKey());
             textMinHeight = messageTextMinHeightDefault;
             textTopMargin = 0;
             textTopPadding = textTopPaddingDefault;
@@ -1110,15 +1112,15 @@ public class ConversationMessageView extends FrameLayout implements View.OnClick
         @Override
         public void bindView(final View view, final MessagePartData attachment) {
             final AudioAttachmentView audioView = (AudioAttachmentView) view;
-            audioView.bindMessagePartData(attachment, mData.getIsIncoming(), isSelected());
+            audioView.bindMessagePartData(attachment, mData.getIsIncoming(), isSelected(), mData.getSenderContactLookupKey());
             audioView.setBackground(ConversationDrawables.get().getBubbleDrawable(
                     isSelected(), mData.getIsIncoming(), false /* needArrow */,
-                    mData.hasIncomingErrorStatus()));
+                    mData.hasIncomingErrorStatus(), mData.getSenderContactLookupKey()));
         }
 
         @Override
         public void unbind(final View view) {
-            ((AudioAttachmentView) view).bindMessagePartData(null, mData.getIsIncoming(), false);
+            ((AudioAttachmentView) view).bindMessagePartData(null, mData.getIsIncoming(), false, mData.getSenderContactLookupKey());
         }
     };
 
@@ -1130,7 +1132,7 @@ public class ConversationMessageView extends FrameLayout implements View.OnClick
                     attachment));
             personView.setBackground(ConversationDrawables.get().getBubbleDrawable(
                     isSelected(), mData.getIsIncoming(), false /* needArrow */,
-                    mData.hasIncomingErrorStatus()));
+                    mData.hasIncomingErrorStatus(), mData.getSenderContactLookupKey()));
             final int nameTextColorRes;
             final int detailsTextColorRes;
             if (isSelected()) {

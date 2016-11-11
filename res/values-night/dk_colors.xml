@@ -22,6 +22,7 @@
     <color name="darkkat_blue_blue_grey">#ff1f2429</color>
 
     <color name="icon_tint">#ffffffff</color>
+    <color name="letter_tile_default_color">#263238</color>
 
     <color name="chips_dropdown_background_normal">@color/darkkat_blue_grey</color>
     <color name="chips_text_color_normal">#ffffff</color>
@@ -29,7 +30,7 @@
     <color name="media_picker_background">@color/darkkat_blue_blue_grey</color>
     <color name="attachment_preview_background">@color/darkkat_blue_blue_grey</color>
 
-    <color name="audio_record_control_button_background_color">@color/darkkat_blue_blue_grey</color>
+    <color name="audio_progress_bar_background_color">#80ffffff</color>
 
     <color name="widget_loading_text_color">#ffffffff</color>
 
