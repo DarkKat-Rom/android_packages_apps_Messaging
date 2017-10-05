@@ -16,7 +16,7 @@
 
 <resources>
 
-    <!-- Material theme -->
+    <!-- Night (Material) theme styles -->
     <style name="BugleTheme.DialogActivity" parent="@style/Theme.AppCompat.DayNight.Dialog">
         <item name="android:windowNoTitle">false</item>
         <item name="android:background">@color/material_grey_850</item>

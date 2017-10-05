@@ -16,7 +16,7 @@
 
 <resources>
 
-    <!-- Material theme -->
+    <!-- Night (Material) theme colors -->
     <color name="contextual_action_bar_background_color">@color/message_bubble_color_selected</color>
     <color name="archived_conversation_action_bar_background_color">#626262</color>
     <color name="archived_conversation_status_bar_background_color">#424242</color>

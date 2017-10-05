@@ -16,7 +16,7 @@
 
 <resources>
 
-    <!-- Blackout theme -->
+    <!-- Night (Blackout) theme colors -->
     <color name="primary_color">@color/blackout_bg_secondary</color>
     <color name="contextual_action_bar_background_color">@color/message_bubble_color_selected</color>
     <color name="archived_conversation_action_bar_background_color">@color/blackout_bg</color>

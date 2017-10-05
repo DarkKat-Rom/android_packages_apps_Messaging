@@ -16,7 +16,7 @@
 
 <resources>
 
-    <!-- DarkKat theme -->
+    <!-- Night (DarkKat) theme colors -->
     <color name="notification_sender_text">#ffffffff</color>
     <color name="notification_secondary_text">#b3ffffff</color>
     <color name="notification_tertiary_text">#b3ffffff</color>

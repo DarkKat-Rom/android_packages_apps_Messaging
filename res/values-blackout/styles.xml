@@ -16,7 +16,7 @@
 
 <resources>
 
-    <!-- Blackout theme -->
+    <!-- Night (Blackout) theme styles -->
     <style name="BugleTheme.ConversationListActivity" parent="BugleTheme">
         <item name="android:windowBackground">@color/blackout_bg</item>
     </style>

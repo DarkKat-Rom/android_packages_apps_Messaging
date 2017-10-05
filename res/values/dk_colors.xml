@@ -16,9 +16,7 @@
 
 <resources>
 
-    <!-- Additional colors -->
-
-    <!-- Day theme -->
+    <!-- Day (Material.Light) theme, additional colors -->
     <color name="primary_color_dark">#0277bd</color>
     <color name="accent_color">@color/primary_color</color>
 
@@ -39,7 +37,7 @@
 
     <color name="debug_and_dialog_background">#ffffffff</color>
 
-    <!-- Day and DarkKat theme -->
+    <!-- Day/Night (Material, Material.Light and DarkKat) theme, additional colors -->
     <array name="letter_tile_colors">
         <item>#DB4437</item>
         <item>#E91E63</item>
