@@ -16,7 +16,7 @@
 
 <resources>
 
-    <!-- DarkKat theme -->
+    <!-- Night (DarkKat) theme styles -->
     <style name="BugleTheme.DialogActivity" parent="@style/Theme.AppCompat.DayNight.Dialog">
         <item name="android:windowNoTitle">false</item>
         <item name="android:background">@color/darkkat_blue_grey</item>

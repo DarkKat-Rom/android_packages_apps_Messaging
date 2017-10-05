@@ -16,7 +16,7 @@
 
 <resources>
 
-    <!-- Blackout theme -->
+    <!-- Night (Blackout) theme styles -->
     <style name="BugleTheme.DialogActivity" parent="@style/Theme.AppCompat.DayNight.Dialog">
         <item name="android:windowNoTitle">false</item>
         <item name="android:background">@color/blackout_bg</item>
